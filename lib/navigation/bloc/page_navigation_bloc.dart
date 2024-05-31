@@ -5,9 +5,11 @@ part 'page_navigation_state.dart';
 
 class PageNavigationBloc
     extends Bloc<PageNavigationEvent, PageNavigationState> {
-  PageNavigationBloc() : super(PageNavigationInitial(tabIndex: 0)) {
+  PageNavigationBloc() : super(const PageNavigationInitial(tabIndex: 0)) {
     on<TabChange>((event, emit) {
-      emit(PageNavigationInitial(tabIndex: event.tabIndex));
+      emit(
+        PageNavigationInitial(tabIndex: event.tabIndex),
+      );
     });
   }
 }

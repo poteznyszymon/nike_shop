@@ -4,6 +4,7 @@ import 'package:nike_shop/intro_pages/intro_page_one.dart';
 import 'package:nike_shop/intro_pages/intro_page_three.dart';
 import 'package:nike_shop/intro_pages/intro_page_two.dart';
 import 'package:nike_shop/navigation/navigation_page.dart';
+import 'package:nike_shop/pages/shop_page/bloc/category_bloc.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../navigation/bloc/page_navigation_bloc.dart';
@@ -26,7 +27,7 @@ class _IntroPageState extends State<IntroPage> {
       body: Stack(
         children: [
           PageView(
-            //physics: const NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             onPageChanged: (value) {
               setState(() {
                 onFirstPage = (value == 0);
@@ -51,8 +52,15 @@ class _IntroPageState extends State<IntroPage> {
                       ? Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => BlocProvider(
-                              create: (context) => PageNavigationBloc(),
+                            builder: (context) => MultiBlocProvider(
+                              providers: [
+                                BlocProvider(
+                                  create: (context) => PageNavigationBloc(),
+                                ),
+                                BlocProvider(
+                                  create: (context) => CategoryBloc(),
+                                ),
+                              ],
                               child: const NavigationPage(),
                             ),
                           ),

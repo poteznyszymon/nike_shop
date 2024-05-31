@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nike_shop/models/categories.dart';
+import 'package:nike_shop/pages/shop_page/bloc/category_bloc.dart';
 import 'components/custom_category_tile.dart';
 import 'components/custom_search_field.dart';
 
@@ -26,7 +29,7 @@ class HomePage extends StatelessWidget {
                   style: Theme.of(context)
                       .textTheme
                       .displaySmall!
-                      .copyWith(fontWeight: FontWeight.bold),
+                      .copyWith(fontWeight: FontWeight.w600, fontSize: 18),
                 ),
               ),
             ],
@@ -36,27 +39,49 @@ class HomePage extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.05,
             child: Padding(
               padding: const EdgeInsets.only(left: 20),
-              child: ListView(
-                physics: const BouncingScrollPhysics(),
-                scrollDirection: Axis.horizontal,
-                children: const [
-                  CustomCategoryTile(
-                    text: 'All shoes',
-                    aciveCategory: true,
-                  ),
-                  CustomCategoryTile(
-                    text: 'Sneakers',
-                    aciveCategory: false,
-                  ),
-                  CustomCategoryTile(
-                    text: 'Running',
-                    aciveCategory: false,
-                  ),
-                  CustomCategoryTile(
-                    text: 'Trekking',
-                    aciveCategory: false,
-                  ),
-                ],
+              child: BlocBuilder<CategoryBloc, CategoryState>(
+                builder: (context, state) {
+                  return ListView(
+                    physics: const BouncingScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      CustomCategoryTile(
+                        categoryOfTile: Categories.all,
+                        text: 'All shoes',
+                        ontap: () {
+                          context
+                              .read<CategoryBloc>()
+                              .add(CategoryChange(category: Categories.all));
+                        },
+                      ),
+                      CustomCategoryTile(
+                        categoryOfTile: Categories.sneakers,
+                        text: 'Sneakers',
+                        ontap: () {
+                          context.read<CategoryBloc>().add(
+                                CategoryChange(category: Categories.sneakers),
+                              );
+                        },
+                      ),
+                      CustomCategoryTile(
+                        categoryOfTile: Categories.running,
+                        text: 'Running',
+                        ontap: () {
+                          context.read<CategoryBloc>().add(
+                              CategoryChange(category: Categories.running));
+                        },
+                      ),
+                      CustomCategoryTile(
+                        categoryOfTile: Categories.trekking,
+                        text: 'Trekking',
+                        ontap: () {
+                          context.read<CategoryBloc>().add(
+                              CategoryChange(category: Categories.trekking));
+                        },
+                      ),
+                    ],
+                  );
+                },
               ),
             ),
           ),
