@@ -18,10 +18,14 @@ class CustomDrawer extends StatelessWidget {
           Column(
             children: [
               DrawerHeader(
+                decoration: UnderlineTabIndicator(
+                    borderSide: BorderSide(
+                  color: Theme.of(context).colorScheme.inversePrimary,
+                )),
                 child: Image.asset(
                   'assets/nike.png',
                   fit: BoxFit.contain,
-                  color: Theme.of(context).colorScheme.onPrimary,
+                  color: Theme.of(context).colorScheme.inversePrimary,
                 ),
               ),
               Padding(

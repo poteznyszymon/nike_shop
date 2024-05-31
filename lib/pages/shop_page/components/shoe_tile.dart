@@ -42,12 +42,12 @@ class ShoeTile extends StatelessWidget {
                       ),
                       Text(
                         shoe.model,
-                        style: Theme.of(context)
-                            .textTheme
-                            .displaySmall!
-                            .copyWith(
-                                fontSize: 14,
-                                color: Theme.of(context).colorScheme.surface),
+                        style:
+                            Theme.of(context).textTheme.displaySmall!.copyWith(
+                                  fontSize: 14,
+                                  color: Theme.of(context).colorScheme.surface,
+                                  fontWeight: FontWeight.bold,
+                                ),
                       ),
                       SizedBox(
                           height: MediaQuery.of(context).size.height * 0.02),

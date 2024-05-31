@@ -26,7 +26,7 @@ class IntroPageOne extends StatelessWidget {
           ),
           Align(
             alignment: const Alignment(1, 0),
-            child: Image.asset('assets/image3.png'),
+            child: Image.asset('assets/test.png'),
           ),
           Align(
             alignment: const Alignment(-0.55, -0.66),

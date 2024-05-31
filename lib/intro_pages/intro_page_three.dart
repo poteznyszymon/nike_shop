@@ -40,7 +40,7 @@ class IntroPageThree extends StatelessWidget {
           Align(
             alignment: const Alignment(0, -0.5),
             child: Image.asset(
-              'assets/jordan_mid.png',
+              'assets/jordan2.png',
             ),
           ),
           Align(
