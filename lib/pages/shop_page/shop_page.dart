@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nike_shop/models/categories.dart';
-import 'package:nike_shop/pages/shop_page/bloc/category_bloc.dart';
-import 'components/custom_category_tile.dart';
+import 'package:nike_shop/data/shoe_list.dart';
+import 'package:nike_shop/models/shoe_model.dart';
+import 'components/categories_selector.dart';
 import 'components/custom_search_field.dart';
+import 'components/shoe_tile.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final List<Shoe> shoes = shoesList;
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.onBackground,
       body: Column(
@@ -29,7 +30,7 @@ class HomePage extends StatelessWidget {
                   style: Theme.of(context)
                       .textTheme
                       .displaySmall!
-                      .copyWith(fontWeight: FontWeight.w600, fontSize: 18),
+                      .copyWith(fontWeight: FontWeight.w500, fontSize: 16),
                 ),
               ),
             ],
@@ -37,54 +38,53 @@ class HomePage extends StatelessWidget {
           SizedBox(height: MediaQuery.of(context).size.height * 0.03),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.05,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: BlocBuilder<CategoryBloc, CategoryState>(
-                builder: (context, state) {
-                  return ListView(
-                    physics: const BouncingScrollPhysics(),
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      CustomCategoryTile(
-                        categoryOfTile: Categories.all,
-                        text: 'All shoes',
-                        ontap: () {
-                          context
-                              .read<CategoryBloc>()
-                              .add(CategoryChange(category: Categories.all));
-                        },
-                      ),
-                      CustomCategoryTile(
-                        categoryOfTile: Categories.sneakers,
-                        text: 'Sneakers',
-                        ontap: () {
-                          context.read<CategoryBloc>().add(
-                                CategoryChange(category: Categories.sneakers),
-                              );
-                        },
-                      ),
-                      CustomCategoryTile(
-                        categoryOfTile: Categories.running,
-                        text: 'Running',
-                        ontap: () {
-                          context.read<CategoryBloc>().add(
-                              CategoryChange(category: Categories.running));
-                        },
-                      ),
-                      CustomCategoryTile(
-                        categoryOfTile: Categories.trekking,
-                        text: 'Trekking',
-                        ontap: () {
-                          context.read<CategoryBloc>().add(
-                              CategoryChange(category: Categories.trekking));
-                        },
-                      ),
-                    ],
+            child: const CategoriesSelector(),
+          ),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Popular shoes',
+                  style: Theme.of(context)
+                      .textTheme
+                      .displaySmall!
+                      .copyWith(fontWeight: FontWeight.w500, fontSize: 16),
+                ),
+                InkWell(
+                  onTap: () {},
+                  child: Text(
+                    'See all',
+                    style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14,
+                        color: Theme.of(context).colorScheme.background),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: SizedBox(
+              height: MediaQuery.of(context).size.width * 0.53,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: shoes.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 20),
+                    child: ShoeTile(
+                      shoe: shoes[index],
+                    ),
                   );
                 },
               ),
             ),
-          ),
+          )
         ],
       ),
     );
