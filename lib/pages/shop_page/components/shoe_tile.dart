@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nike_shop/models/shoe_model.dart';
+
+import '../../cart_page/bloc/cart_bloc.dart';
 
 class ShoeTile extends StatelessWidget {
   final Shoe shoe;
@@ -66,21 +69,26 @@ class ShoeTile extends StatelessWidget {
             ),
           ),
           Align(
-            alignment: Alignment(1, 1),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.background,
-                borderRadius: const BorderRadius.only(
-                  bottomRight: Radius.circular(12),
-                  topLeft: Radius.circular(12),
+            alignment: const Alignment(1, 1),
+            child: GestureDetector(
+              onTap: () {
+                context.read<CartBloc>().add(ShoeAdd(shoe: shoe));
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.background,
+                  borderRadius: const BorderRadius.only(
+                    bottomRight: Radius.circular(12),
+                    topLeft: Radius.circular(12),
+                  ),
                 ),
-              ),
-              width: MediaQuery.of(context).size.width * 0.1,
-              height: MediaQuery.of(context).size.width * 0.1,
-              child: Center(
-                child: Icon(
-                  Icons.add,
-                  color: Theme.of(context).colorScheme.inversePrimary,
+                width: MediaQuery.of(context).size.width * 0.1,
+                height: MediaQuery.of(context).size.width * 0.1,
+                child: Center(
+                  child: Icon(
+                    Icons.add,
+                    color: Theme.of(context).colorScheme.inversePrimary,
+                  ),
                 ),
               ),
             ),

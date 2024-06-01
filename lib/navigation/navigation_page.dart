@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:nike_shop/navigation/bloc/page_navigation_bloc.dart';
 import '../componets/custom_drawer.dart';
-import '../pages/cart_page.dart';
+import '../pages/cart_page/cart_page.dart';
 import '../pages/shop_page/shop_page.dart';
 
 class NavigationPage extends StatelessWidget {

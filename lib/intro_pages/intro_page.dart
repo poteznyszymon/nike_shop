@@ -4,6 +4,7 @@ import 'package:nike_shop/intro_pages/intro_page_one.dart';
 import 'package:nike_shop/intro_pages/intro_page_three.dart';
 import 'package:nike_shop/intro_pages/intro_page_two.dart';
 import 'package:nike_shop/navigation/navigation_page.dart';
+import 'package:nike_shop/pages/cart_page/bloc/cart_bloc.dart';
 import 'package:nike_shop/pages/shop_page/bloc/category_bloc.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -60,6 +61,9 @@ class _IntroPageState extends State<IntroPage> {
                                 BlocProvider(
                                   create: (context) => CategoryBloc(),
                                 ),
+                                BlocProvider(
+                                  create: (context) => CartBloc(),
+                                )
                               ],
                               child: const NavigationPage(),
                             ),
