@@ -10,7 +10,7 @@ class NewArrivalWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.15,
+        height: MediaQuery.of(context).size.height * 0.17,
         child: Stack(
           children: [
             Column(
@@ -21,7 +21,7 @@ class NewArrivalWidget extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  height: MediaQuery.of(context).size.height * 0.12,
+                  height: MediaQuery.of(context).size.height * 0.13,
                   width: double.infinity,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 30),

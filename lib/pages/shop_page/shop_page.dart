@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nike_shop/data/shoe_list.dart';
+import 'package:nike_shop/models/categories.dart';
 import 'package:nike_shop/models/shoe_model.dart';
+import 'package:nike_shop/pages/shop_page/bloc/category_bloc.dart';
 import 'components/categories_selector.dart';
 import 'components/custom_search_field.dart';
 import 'components/custom_text_row.dart';
@@ -16,7 +19,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.onBackground,
       body: SingleChildScrollView(
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         child: Column(
           children: [
             SizedBox(height: MediaQuery.of(context).size.height * 0.02),
@@ -54,16 +57,25 @@ class HomePage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: SizedBox(
                 height: MediaQuery.of(context).size.width * 0.59,
-                child: ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  itemCount: shoes.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(right: 20),
-                      child: ShoeTile(
-                        shoe: shoes[index],
-                      ),
+                child: BlocBuilder<CategoryBloc, CategoryState>(
+                  builder: (context, state) {
+                    final filteredShoes = state.category == Categories.all
+                        ? shoes
+                        : shoes
+                            .where((shoe) => shoe.category == state.category)
+                            .toList();
+                    return ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
+                      itemCount: filteredShoes.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 20),
+                          child: ShoeTile(
+                            shoe: filteredShoes[index],
+                          ),
+                        );
+                      },
                     );
                   },
                 ),
