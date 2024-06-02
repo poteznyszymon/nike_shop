@@ -40,11 +40,12 @@ class NavigationPage extends StatelessWidget {
           ],
         ),
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Image.asset(
-              'assets/bag.png',
-              color: Colors.black,
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: IconButton(
+              onPressed: () {},
+              icon: Image.asset('assets/person.png',
+                  scale: 3.5, color: Theme.of(context).colorScheme.secondary),
             ),
           )
         ],
@@ -73,7 +74,7 @@ class NavigationPage extends StatelessWidget {
                   child: Image.asset(
                     fit: BoxFit.fill,
                     'assets/home_icon.png',
-                    scale: 0.9,
+                    scale: 3.5,
                     color: state.tabIndex == 0
                         ? Theme.of(context).colorScheme.background
                         : Theme.of(context).colorScheme.surface,
@@ -91,7 +92,7 @@ class NavigationPage extends StatelessWidget {
                   child: Image.asset(
                     fit: BoxFit.fill,
                     'assets/bag.png',
-                    scale: 0.9,
+                    scale: 3.2,
                     color: state.tabIndex == 1
                         ? Theme.of(context).colorScheme.background
                         : Theme.of(context).colorScheme.surface,

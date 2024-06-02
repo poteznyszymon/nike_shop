@@ -47,6 +47,8 @@ class _IntroPageState extends State<IntroPage> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: CustomButton(
+                color: Theme.of(context).colorScheme.inversePrimary,
+                textColor: Colors.black,
                 text: onFirstPage ? 'Get Started' : 'Next',
                 ontap: () {
                   onLastPage

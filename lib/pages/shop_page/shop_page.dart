@@ -81,7 +81,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.02),
             CustomTextRow(
               text: 'New Arrivals',
               ontap: () {},

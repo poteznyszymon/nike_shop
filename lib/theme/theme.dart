@@ -30,6 +30,11 @@ class MyTheme {
         color: Colors.black,
         fontWeight: FontWeight.normal,
       ),
+      bodyMedium: GoogleFonts.poppins(
+        fontSize: 18,
+        color: Colors.black,
+        fontWeight: FontWeight.w400,
+      ),
     ),
   );
 }

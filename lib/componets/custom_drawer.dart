@@ -34,6 +34,7 @@ class CustomDrawer extends StatelessWidget {
                   text: 'Home',
                   image: Image.asset(
                     'assets/home_icon.png',
+                    scale: 3.5,
                     color: Theme.of(context).colorScheme.inversePrimary,
                   ),
                   ontap: () {
@@ -47,6 +48,7 @@ class CustomDrawer extends StatelessWidget {
                   text: 'About',
                   image: Image.asset(
                     'assets/bag.png',
+                    scale: 3.5,
                     color: Theme.of(context).colorScheme.inversePrimary,
                   ),
                   ontap: () {},

@@ -2,11 +2,11 @@ part of 'cart_bloc.dart';
 
 @immutable
 sealed class CartState {
-  List<Shoe> cart;
+  final List<Shoe> cart;
 
-  CartState({required this.cart});
+  const CartState({required this.cart});
 }
 
 final class CartInitial extends CartState {
-  CartInitial({required super.cart});
+  const CartInitial({required super.cart});
 }

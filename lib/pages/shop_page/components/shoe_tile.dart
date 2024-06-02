@@ -56,11 +56,7 @@ class ShoeTile extends StatelessWidget {
                           height: MediaQuery.of(context).size.height * 0.02),
                       Text(
                         '\$${shoe.price.toString()}',
-                        style:
-                            Theme.of(context).textTheme.displaySmall!.copyWith(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                        style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ],
                   ),
