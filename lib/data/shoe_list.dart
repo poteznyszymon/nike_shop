@@ -23,5 +23,5 @@ List<Shoe> shoesList = [
           'LunarGlide 6 to połączenie świetnej amortyzacji i stabilności podczas biegu.',
       price: 90,
       imageUrl: 'assets/shoes/shoe_5.png',
-      category: Categories.running)
+      category: Categories.running),
 ];

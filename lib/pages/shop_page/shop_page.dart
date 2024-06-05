@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nike_shop/data/shoe_list.dart';
 import 'package:nike_shop/models/categories.dart';
 import 'package:nike_shop/models/shoe_model.dart';
+import 'package:nike_shop/navigation/bloc/page_navigation_bloc.dart';
+import 'package:nike_shop/pages/all_shoes_page.dart';
 import 'package:nike_shop/pages/shop_page/bloc/category_bloc.dart';
 import 'components/categories_selector.dart';
 import 'components/custom_search_field.dart';
@@ -50,7 +52,9 @@ class HomePage extends StatelessWidget {
             SizedBox(height: MediaQuery.of(context).size.height * 0.04),
             CustomTextRow(
               text: 'Popular shoes',
-              ontap: () {},
+              ontap: () {
+                context.read<PageNavigationBloc>().add(TabChange(tabIndex: 2));
+              },
             ),
             SizedBox(height: MediaQuery.of(context).size.height * 0.03),
             Padding(

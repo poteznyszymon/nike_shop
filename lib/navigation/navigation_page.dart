@@ -11,10 +11,6 @@ class NavigationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> _pages = [
-      const HomePage(),
-      const CartPage(),
-    ];
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.onBackground,
       appBar: AppBar(
@@ -107,7 +103,7 @@ class NavigationPage extends StatelessWidget {
       ),
       body: BlocBuilder<PageNavigationBloc, PageNavigationState>(
         builder: (context, state) {
-          return _pages[state.tabIndex];
+          return state.pages[state.tabIndex];
         },
       ),
     );

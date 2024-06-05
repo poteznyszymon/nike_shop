@@ -18,18 +18,18 @@ class CustomTextRowCart extends StatelessWidget {
       children: [
         Text(
           firstText,
-          style: Theme.of(context).textTheme.displaySmall!.copyWith(
+          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
               fontSize: 17,
               color: !isTotal
-                  ? Theme.of(context).colorScheme.surface
-                  : Colors.black),
+                  ? Theme.of(context).colorScheme.secondary
+                  : Theme.of(context).colorScheme.secondary),
         ),
         Text(
           secondText,
           style: Theme.of(context).textTheme.bodyMedium!.copyWith(
               fontSize: 17,
               color: !isTotal
-                  ? Theme.of(context).colorScheme.surface
+                  ? Theme.of(context).colorScheme.secondary
                   : Theme.of(context).colorScheme.background),
         ),
       ],

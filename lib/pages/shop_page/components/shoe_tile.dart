@@ -27,7 +27,10 @@ class ShoeTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(shoe.imageUrl),
+                Center(
+                    child: Image.asset(
+                  shoe.imageUrl,
+                )),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Column(
