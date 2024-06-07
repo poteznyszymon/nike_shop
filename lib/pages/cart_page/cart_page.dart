@@ -16,8 +16,11 @@ class CartPage extends StatelessWidget {
         final _cart = state.cart;
         double _subtotal = _cart.fold(0, (sum, item) => sum + item.price);
         if (state.cart.isEmpty) {
-          return const Center(
-            child: Text('Your cart is empty 😥'),
+          return Center(
+            child: Text(
+              'Cart is empty',
+              style: Theme.of(context).textTheme.displaySmall,
+            ),
           );
         } else {
           return Scaffold(

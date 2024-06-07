@@ -1,15 +1,28 @@
+import 'package:animate_icons/animate_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nike_shop/models/shoe_model.dart';
-
 import '../../cart_page/bloc/cart_bloc.dart';
 
-class ShoeTile extends StatelessWidget {
+class ShoeTile extends StatefulWidget {
   final Shoe shoe;
   const ShoeTile({
     super.key,
     required this.shoe,
   });
+
+  @override
+  State<ShoeTile> createState() => _ShoeTileState();
+}
+
+class _ShoeTileState extends State<ShoeTile> {
+  late AnimateIconController animationController;
+
+  @override
+  void initState() {
+    animationController = AnimateIconController();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +42,7 @@ class ShoeTile extends StatelessWidget {
               children: [
                 Center(
                     child: Image.asset(
-                  shoe.imageUrl,
+                  widget.shoe.imageUrl,
                 )),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
@@ -37,7 +50,10 @@ class ShoeTile extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        shoe.category.toString().substring(11).toUpperCase(),
+                        widget.shoe.category
+                            .toString()
+                            .substring(11)
+                            .toUpperCase(),
                         style: Theme.of(context)
                             .textTheme
                             .displaySmall!
@@ -47,7 +63,7 @@ class ShoeTile extends StatelessWidget {
                             ),
                       ),
                       Text(
-                        shoe.model,
+                        widget.shoe.model,
                         style:
                             Theme.of(context).textTheme.displaySmall!.copyWith(
                                   fontSize: 14,
@@ -58,7 +74,7 @@ class ShoeTile extends StatelessWidget {
                       SizedBox(
                           height: MediaQuery.of(context).size.height * 0.02),
                       Text(
-                        '\$${shoe.price.toString()}',
+                        '\$${widget.shoe.price.toString()}',
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ],
@@ -71,7 +87,7 @@ class ShoeTile extends StatelessWidget {
             alignment: const Alignment(1, 1),
             child: GestureDetector(
               onTap: () {
-                context.read<CartBloc>().add(ShoeAdd(shoe: shoe));
+                context.read<CartBloc>().add(ShoeAdd(shoe: widget.shoe));
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -84,10 +100,23 @@ class ShoeTile extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 0.1,
                 height: MediaQuery.of(context).size.width * 0.1,
                 child: Center(
-                  child: Icon(
-                    Icons.add,
-                    color: Theme.of(context).colorScheme.inversePrimary,
-                  ),
+                  child: AnimateIcons(
+                      duration: Duration(milliseconds: 400),
+                      startIconColor:
+                          Theme.of(context).colorScheme.onBackground,
+                      endIconColor: Theme.of(context).colorScheme.onBackground,
+                      startIcon: Icons.add,
+                      endIcon: Icons.done,
+                      onStartIconPress: () {
+                        context
+                            .read<CartBloc>()
+                            .add(ShoeAdd(shoe: widget.shoe));
+                        return true;
+                      },
+                      onEndIconPress: () {
+                        return true;
+                      },
+                      controller: animationController),
                 ),
               ),
             ),
