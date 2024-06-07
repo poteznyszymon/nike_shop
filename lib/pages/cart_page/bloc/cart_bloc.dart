@@ -13,6 +13,11 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       emit(CartInitial(cart: _cart));
       toastInfo(message: 'Added to cart');
     });
-    on<ShoeRemove>((event, emit) {});
+    on<ShoeRemove>((event, emit) {
+      final _cart = state.cart;
+      _cart.removeAt(event.index);
+      emit(CartInitial(cart: _cart));
+      toastInfo(message: 'Shoe removed');
+    });
   }
 }

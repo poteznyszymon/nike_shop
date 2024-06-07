@@ -10,7 +10,7 @@ class ShoeAdd extends CartEvent {
 }
 
 class ShoeRemove extends CartEvent {
-  final Shoe shoe;
+  final int index;
 
-  ShoeRemove({required this.shoe});
+  ShoeRemove({required this.index});
 }

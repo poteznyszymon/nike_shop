@@ -4,7 +4,6 @@ import 'package:nike_shop/data/shoe_list.dart';
 import 'package:nike_shop/models/categories.dart';
 import 'package:nike_shop/models/shoe_model.dart';
 import 'package:nike_shop/navigation/bloc/page_navigation_bloc.dart';
-import 'package:nike_shop/pages/all_shoes_page.dart';
 import 'package:nike_shop/pages/shop_page/bloc/category_bloc.dart';
 import 'components/categories_selector.dart';
 import 'components/custom_search_field.dart';
